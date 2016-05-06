@@ -1,0 +1,3 @@
+.primary::after {
+  content: " is a primary color";
+}
