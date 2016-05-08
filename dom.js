@@ -95,45 +95,40 @@
       })
     },
 
+    append: function (string) {
+      if (string === undefined) {
+        return this.htmlElements[0].innerHTML
+      } else {
+        this.each(function(el) {
+          el.innerHTML += string
+        })
+      }
+    },
+
+    attr: function (key, value) {
+      if (value === undefined) {
+        return this.htmlElements[0].getAttribute(key)
+      } else {
+        this.htmlElements[0].setAttribute(key, value)
+      }
+    },
+
+    find: function (target) {
+      var output = []
+      this.each(function (el) {
+        var temp = [].slice.call(el.querySelectorAll(target))
+        output = output.concat(temp)
+      })
+      return new domTree(output)
+    },
+
+    on: function (event, fn) {
+      this.each(function (el) {
+        el.addEventListener(event, fn)
+      })
+    }
+
   }
 
-
-
-  domTree.prototype.append = function (string) {
-
-    if (string === undefined) {
-      return this.htmlElements[0].innerHTML;
-
-    } else {
-      this.each (function (el) {
-        el.innerHTML += string;
-      });
-    }
-  };
-
-  domTree.prototype.attr = function (key, value) {
-    if (value === undefined) {
-    return this.htmlElements[0].getAttribute(key);
-    }
-    this.htmlElements[0].setAttribute(key, value);
-  };
-
-
-  domTree.prototype.find = function (target) {
-    var output = [];
-    this.each(function (el) {
-      var temp = [].slice.call(el.querySelectorAll(target));
-      output = output.concat(temp);
-    });
-    return new domTree(output);
-  };
-
-
-  domTree.prototype.on = function (event, fun) {
-    this.each(function (el) {
-      el.addEventListener(event, fun);
-    });
-
-  };
 
 }(this));
