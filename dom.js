@@ -94,7 +94,7 @@
         el.remove();
       })
     },
-
+    
     append: function (string) {
       if (string === undefined) {
         return this.htmlElements[0].innerHTML
